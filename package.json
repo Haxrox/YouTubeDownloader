@@ -2,6 +2,15 @@
   "name": "js_youtube_downloader",
   "version": "1.0.0",
   "description": "JS YouTube video downloader",
+  "bin": "main.js",
+  "pkg": {
+    "assets": [
+      "node_modules/**/*"
+    ],
+    "targets": [
+      "node14-win-x64"
+    ]
+  },
   "main": "main.js",
   "scripts": {
     "start": "node main.js",
