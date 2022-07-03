@@ -1,18 +1,34 @@
 // Buildin with nodejs
 const cp = require('child_process');
 const readline = require('readline');
-const wait = require('util').promisify(setTimeout);
 // External modules
 const ytdl = require('ytdl-core');
 const ffmpeg = require('ffmpeg-static');
 
 const args = process.argv.slice(2);
 
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+const prompt = (query) => new Promise((resolve) => rl.question(query, resolve));
+
+async function completed() {
+    try {
+        await prompt("Press any key to exit ...");
+    } catch (exception) {
+        console.error("ERROR: Failed to prompt user");
+    } finally {
+        rl.close();
+    }
+    process.exit();
+}
 /**
  * Downloads the video from the given url and saves it to the given path.
  * @param {string} url The url of the video to download
  */
-function download(url) {
+async function download(url) {
     if (ytdl.validateURL(url) && url.toUpperCase() !== "--HELP" && url.toUpperCase() !== "-H") {
         ytdl.getInfo(url).then(info => {
             // Global constants
@@ -86,13 +102,16 @@ function download(url) {
                 console.error(`ERROR: ${error}`)
             );
 
-            ffmpegProcess.on('close', () => {
+            ffmpegProcess.on('close', (code, signal) => {
                 // Cleanup
                 process.stdout.write('\n\n\n\n');
-                console.log(`Successfully downloaded ${fileName} [${url}] at ${filePath}`);
+
+                if (!signal) {
+                    console.log(`Successfully downloaded ${fileName} [${url}] at ${filePath}`);
+                }
+
                 clearInterval(progressbarHandle);
-                
-                wait(5000);
+                completed();
             });
 
             // Link streams
@@ -122,33 +141,23 @@ function download(url) {
         console.log("\t<output-name> - The name of the file (default: title of the video)");
         console.log("Example: node main.js https://www.youtube.com/watch?v=pXRviuL6vMY Videos \"TwentyOnePilots - Stressed Out\"");
         console.log("Example: node main.js https://www.youtube.com/watch?v=pXRviuL6vMY C:\\Users\\UserName\\Videos \"TwentyOnePilots - Stressed Out\"");
+        completed();
     } else {
         console.error(`ERROR: args[0] (${args[0]}) is not a valid YouTube URL`);
+        completed();
     }
-
-    // Wait 5 seconds before quitting program
-    wait(5000);
 }
 
 /**
  * Prompts the user for input and downloads the video (if possible)
  */
 async function promptUser() {
-    const rl = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout
-    });
-
-    const prompt = (query) => new Promise((resolve) => rl.question(query, resolve));
-
     try {
         args[0] = await prompt("Enter the URL: ");
         args[1] = await prompt("Enter the path to save the video: ");
         args[2] = await prompt("Enter the filename for the video: ");
     } catch (e) {
         console.error("ERROR: cannot prompt user");
-    } finally {
-        rl.close();
     }
 }
 /**
