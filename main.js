@@ -1,6 +1,7 @@
 // Buildin with nodejs
 const cp = require('child_process');
 const readline = require('readline');
+const fs = require('fs');
 // External modules
 const ytdl = require('ytdl-core');
 const ffmpeg = require('ffmpeg-static');
@@ -73,6 +74,10 @@ async function download(url) {
             };
 
             // Start the ffmpeg child process
+            // console.log(ffmpeg);
+            // console.log(__dirname);
+            // fs.readdirSync(__dirname.concat("\\node_modules\\ffmpeg-static")).forEach(file => console.log(file));
+
             const ffmpegProcess = cp.spawn(ffmpeg, [
                 // Remove ffmpeg's console spamming
                 '-loglevel', '8', '-hide_banner',
@@ -104,10 +109,9 @@ async function download(url) {
 
             ffmpegProcess.on('close', (code, signal) => {
                 // Cleanup
-                console.log(code, signal);
                 process.stdout.write('\n\n\n\n');
 
-                if (!signal) {
+                if (code === 0) {
                     console.log(`Successfully downloaded ${fileName} [${url}] at ${filePath}`);
                 }
 
