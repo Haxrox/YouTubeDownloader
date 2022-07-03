@@ -91,6 +91,8 @@ function download(url) {
                 process.stdout.write('\n\n\n\n');
                 console.log(`Successfully downloaded ${fileName} [${url}] at ${filePath}`);
                 clearInterval(progressbarHandle);
+                
+                wait(5000);
             });
 
             // Link streams
