@@ -104,6 +104,7 @@ async function download(url) {
 
             ffmpegProcess.on('close', (code, signal) => {
                 // Cleanup
+                console.log(code, signal);
                 process.stdout.write('\n\n\n\n');
 
                 if (!signal) {

@@ -14,7 +14,7 @@
   "main": "main.js",
   "scripts": {
     "start": "node main.js",
-    "build": "echo Creating executable... && pkg -o dist/YouTubeDownloader . && echo Executable created!",
+    "build": "echo Creating executable... && pkg -o dist/YouTubeDownloader -C GZip . && echo Executable created!",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
