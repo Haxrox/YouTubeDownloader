@@ -15,6 +15,14 @@ Usage: node main.js <youtube-url> [<output-path>] [<output-name>]
     <output-name> - The name of the file (default: title of the video)
 ```
 
+# Examples
+```
+node main.js https://www.youtube.com/watch?v=pXRviuL6vMY Videos \"TwentyOnePilots - Stressed Out\"
+node main.js https://www.youtube.com/watch?v=pXRviuL6vMY C:\\Users\\UserName\\Videos \"TwentyOnePilots - Stressed Out\"
+```
+Both commands download the song [TwentyOnePilots - Stressed Out](https://www.youtube.com/watch?v=pXRviuL6vMY) to the user's `Video` folder
+
+
 # Resources
 - [ytdl-core](https://github.com/fent/node-ytdl-core)
 - [FFmpeg](https://ffmpeg.org/)

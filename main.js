@@ -113,7 +113,7 @@ if (ytdl.validateURL(ref)) {
     console.log("\t<youtube-url> - The url of the youtube video to download");
     console.log("\t<output-path> - The path to save the file to (default: Downloads)");
     console.log("\t<output-name> - The name of the file (default: title of the video)");
-    console.log("Example: node main.js https://www.youtube.com/watch?v=pXRviuL6vMY Videos Stressed_Out");
+    console.log("Example: node main.js https://www.youtube.com/watch?v=pXRviuL6vMY Videos \"TwentyOnePilots - Stressed Out\"");
     console.log("Example: node main.js https://www.youtube.com/watch?v=pXRviuL6vMY C:\\Users\\UserName\\Videos \"TwentyOnePilots - Stressed Out\"");
 } else {
     console.error("ERROR: args[0] must be a valid YouTube URL");
