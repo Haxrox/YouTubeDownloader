@@ -18,3 +18,7 @@ Usage: node main.js <youtube-url> [<output-path>] [<output-name>]
 # Resources
 - [ytdl-core](https://github.com/fent/node-ytdl-core)
 - [FFmpeg](https://ffmpeg.org/)
+
+# TODO
+[] Create a GUI version of this application (either web application or desktop application using [Electron](https://www.electronjs.org/))
+[] Implement playlist downloading / multi-video downloads
