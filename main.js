@@ -159,8 +159,8 @@ async function download(url) {
 async function promptUser() {
     try {
         args[0] = await prompt("Enter the URL: ");
-        args[1] = await prompt("Enter the path to save the video: ");
-        args[2] = await prompt("Enter the filename for the video: ");
+        // args[1] = await prompt("Enter the path to save the video: ");
+        // args[2] = await prompt("Enter the filename for the video: ");
     } catch (e) {
         console.error("ERROR: cannot prompt user");
     }
