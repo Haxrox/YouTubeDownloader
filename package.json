@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "JS YouTube video downloader",
   "bin": "main.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Haxrox/YouTubeDownloader"
+  },
   "pkg": {
     "assets": [
       "node_modules/**/*"
@@ -17,10 +21,13 @@
     "build": "echo Creating executable... && pkg -o dist/YouTubeDownloader -C GZip . && echo Executable created!",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Haxrox",
+  "license": "MIT",
   "dependencies": {
     "ffmpeg-static": "^5.0.2",
-    "ytdl-core": "^4.11.0"
+    "ytdl-core": "^4.10.0"
+  },
+  "devDependencies": {
+    "electron": "^19.0.7"
   }
 }
