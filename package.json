@@ -28,6 +28,6 @@
     "ytdl-core": "^4.10.0"
   },
   "devDependencies": {
-    "electron": "^19.0.7"
+    "electron": "^42.11.16"
   }
 }
